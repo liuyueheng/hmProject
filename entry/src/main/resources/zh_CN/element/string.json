@@ -1,0 +1,32 @@
+{
+  "string": [
+    {
+      "name": "module_desc",
+      "value": "模块描述"
+    },
+    {
+      "name": "EntryAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "EntryAbility_label",
+      "value": "Beta理财师"
+    },
+    {
+      "name": "table_home",
+      "value": "首页"
+    },
+    {
+      "name": "table_contact",
+      "value": "内容"
+    },
+    {
+      "name": "table_discover",
+      "value": "客户"
+    },
+    {
+      "name": "table_me",
+      "value": "机构专区"
+    }
+  ]
+}

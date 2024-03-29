@@ -1,0 +1,7 @@
+{
+  "src": [
+    "pages/splash/Splash",
+    "pages/Index",
+    "pages/main/MainFrame"
+  ]
+}

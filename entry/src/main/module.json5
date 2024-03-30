@@ -11,8 +11,10 @@
     "deliveryWithInstall": true,
     "installationFree": false,
     "pages": "$profile:main_pages",
+    //权限申请
     "requestPermissions": [
       {
+        //网络权限
         "name": "ohos.permission.INTERNET"
       }
     ],

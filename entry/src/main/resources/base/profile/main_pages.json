@@ -2,6 +2,10 @@
   "src": [
     "pages/splash/Splash",
     "pages/Index",
-    "pages/main/MainFrame"
+    "pages/main/MainFrame",
+    "pages/demo03/BuildCase",
+    "pages/demo02/LoginCase",
+    "pages/demo01/ToggleCase",
+    "pages/demo03/BuilderParamCase"
   ]
 }

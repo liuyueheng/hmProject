@@ -1,14 +1,6 @@
-import promptAction from '@ohos.promptAction'
-
-@Preview
+@Entry
 @Component
 export default struct ContentFragment {
-  @State account: string = ""
-  @State password: string = ""
-  @State count: number = 5
-  timer: number = -1
-  @State isChange: boolean = true
-  @State selectIndex: number = -1
   @State commentList: ReplyItem[] = [
     {
       id: 1,
@@ -66,93 +58,109 @@ export default struct ContentFragment {
     }
   ]
 
-  login() {
-    if (this.account == "admin" && this.password == "123") {
-      promptAction.showToast({ message: "登录成功" })
+  /**
+   * 定义父组件的方法
+   * @param item
+   */
+  changeLike(item: ReplyItem) {
+    if (item.likeFlag) {
+      item.likeNum--
+      item.likeFlag = false
     } else {
-      promptAction.showToast({ message: "登录失败" })
+      item.likeNum++
+      item.likeFlag = true
     }
+    let index = this.commentList.findIndex(obj => obj.id === item.id)
+    this.commentList.splice(index, 1, item)
+  }
+
+  addComment(item: ReplyItem) {
+    this.commentList.unshift(item)
   }
 
   build() {
-    Scroll() {
-      Column() {
-        // TextInput({ placeholder: "请输入用户名" }).width('80%').margin({ top: 20 }).onChange((value) => {
-        //   this.account = value
-        // })
-        // TextInput({ placeholder: "请输入密码" })
-        //   .width('80%')
-        //   .type(InputType.Password)
-        //   .onChange((value) => {
-        //     this.password = value
-        //   })
-        // Button("登录").width('80%').onClick(() => {
-        //   this.login()
-        // }).enabled(this.account !== "" && this.password !== "")
-        // //验证码
-        // Button(this.count < 5 ? `还剩${this.count}秒` : "发送验证码")
-        //   .onClick(() => {
-        //     if (this.count === 5) {
-        //       // 计时器
-        //       this.timer = setInterval(() => {
-        //         if (this.count === 0) {
-        //           clearInterval(this.timer)
-        //           this.count = 5 // 回到初始值
-        //           return
-        //         }
-        //         this.count--
-        //       }, 1000)
-        //     }
-        //   })
-        // if (this.isChange) {
-        //   Image("https://img2.baidu.com/it/u=2539872750,2513176690&fm=253&fmt=auto&app=120&f=JPEG?w=500&h=500")
-        //     .width(200)
-        //     .height(200)
-        //     .borderRadius(100)
-        HmNavBar()
-        HmCommentItem({
-          listItem: {
-            id: 1,
-            avatar: $r('app.media.ic_app_launcher'),
-            author: '周杰伦',
-            content: '意大利拌面应该使用42号钢筋混凝土再加上量子力学缠绕最后通过不畏浮云遮望眼',
-            time: '11-30',
-            area: '海南',
-            likeNum: 100
-          }
-        })
-        Divider().strokeWidth(6).color("#f4f4f4")
-        Row() {
-          Text("回复7").width("100%").fontWeight(FontWeight.Bold)
-        }.height(40).padding({ left: 20 })
+    Stack({ alignContent: Alignment.Bottom }) {
+      Scroll() {
+        Column() {
+          HmNavBar()
+          HmCommentItem({
+            item: {
+              id: 1,
+              avatar: $r('app.media.ic_app_launcher'),
+              author: '周杰伦',
+              content: '意大利拌面应该使用42号钢筋混凝土再加上量子力学缠绕最后通过不畏浮云遮望眼',
+              time: '11-30',
+              area: '海南',
+              likeNum: 100
+            }
+          })
+          Divider().strokeWidth(6).color("#f4f4f4")
+          Row() {
+            Text("回复7").width("100%").fontWeight(FontWeight.Bold)
+          }.height(40).padding({ left: 20 })
 
-        ForEach(this.commentList, (item: ReplyItem) => {
-          HmCommentItem({ listItem: item })
-        })
-
-        // }
-        // Toggle({ type: ToggleType.Switch, isOn: this.isChange }).onChange((isChange) => {
-        //   this.isChange = isChange
-        // })
-        // Select([{ value: "1" }, { value: "2" }, { value: "3" }]).onSelect((index) => {
-        //   this.selectIndex = index
-        // })
-        // if (this.selectIndex == 0) {
-        //   Text("张三")
-        // } else if (this.selectIndex == 1) {
-        //   Text("李四")
-        // } else if (this.selectIndex == 2) {
-        //   Text("王五")
-        // }
-        // Image("https://img2.baidu.com/it/u=2539872750,2513176690&fm=253&fmt=auto&app=120&f=JPEG?w=500&h=500")
-        //   .width(200)
-        //   .height(200)
-        //   .borderRadius(100).visibility(this.isChange ? Visibility.Visible : Visibility.Hidden)
-      }
-      .height('100%')
-      .width('100%')
-      .margin({ bottom: 300 })
+          ForEach(this.commentList, (item: ReplyItem) => {
+            HmCommentItem({ item, changeLike: item => {
+              this.changeLike(item)
+            } })
+          })
+        }
+      }.padding({
+        bottom: 100
+      })
+      //回复组件
+      ReplayInput({
+        addComment: item => {
+          this.addComment(item)
+        }
+      })
     }
+  }
+}
+
+@Component
+struct ReplayInput {
+  @State commentStr: string = ""
+  addComment: (item: ReplyItem) => void = () => {
+  }
+
+  build() {
+    Row() {
+      TextInput({
+        placeholder: "回复~", text: this.commentStr
+      }).layoutWeight(1).onChange((value) => {
+        this.commentStr = value
+      })
+      Text("发布").margin({ left: 15 }).onClick(() => {
+        if (this.commentStr !== "") {
+          let obj: ReplyItem = {
+            id: Date.now(),
+            content: this.commentStr,
+            time: `${new Date().getMonth() + 1} - ${new Date().getDate()}`,
+            likeNum: 0,
+            likeFlag: false,
+            author: '老高',
+            avatar: $r('app.media.icon'),
+            area: "北京"
+          }
+          this.addComment(obj)
+          this.commentStr = ""
+        }
+      })
+    }
+    .border({
+      color: "#f4f4f4",
+      width: {
+        top: 1
+      }
+    })
+    .backgroundColor(Color.White)
+    .width('100%')
+    .height(60)
+    .padding({
+      left: 10,
+      right: 10
+    })
   }
 }
 
@@ -195,40 +203,46 @@ struct HmNavBar {
 
 @Component
 struct HmCommentItem {
-  listItem: Partial<ReplyItem> = {} //通过上面把值传下来 父传子
+  item: Partial<ReplyItem> = {} //通过上面把值传下来 父传子
+  changeLike: (item: ReplyItem) => void = () => {
+  }
 
   build() {
     Row() {
       // 左侧头像
-      Image(this.listItem.avatar)
+      Image(this.item.avatar)
         .width(32)
         .aspectRatio(1)
         .borderRadius(16)
       // 评论区
       Column({ space: 10 }) {
-        Text(this.listItem.author)
+        Text(this.item.author)
           .fontWeight(FontWeight.Bold)
-        Text(this.listItem.content)
+        Text(this.item.content)
           .lineHeight(20)
           .fontSize(16)
           .fontColor('#565656')
         // 底部内容
         Row() {
-          Text(`${this.listItem.time} .IP属地${this.listItem.area}`)
+          Text(`${this.item.time} .IP属地${this.item.area}`)
             .fontSize(12)
             .fontColor("#c3c4c5")
           Row() {
-            Image($r("app.media.widget_bar_tools_nor"))
-              .width(12)
-              .aspectRatio(1)
-              .fillColor('#c3c4c5') // 填充颜色
-              .margin({
-                right: 5
-              })
-            Text(this.listItem.likeNum.toString())
+            if (this.item.likeFlag == true) {
+              Image($r('app.media.widget_bar_tools_over'))
+                .width(14)
+                .aspectRatio(1)
+            } else {
+              Image($r('app.media.widget_bar_tools_nor'))
+                .width(14)
+                .aspectRatio(1)
+            }
+            Text(this.item.likeNum?.toString())
               .fontSize(12)
               .fontColor("#c3c4c5")
-          }
+          }.onClick(() => {
+            this.changeLike(this.item as ReplyItem)
+          })
         }.justifyContent(FlexAlign.SpaceBetween)
         .width('100%')
       }

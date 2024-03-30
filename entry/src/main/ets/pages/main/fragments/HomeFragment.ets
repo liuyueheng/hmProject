@@ -1,15 +1,16 @@
 import promptAction from '@ohos.promptAction'
+import router from '@ohos.router'
 
-@Preview
+@Entry
 @Component
 export default struct HomeFragment {
   build() {
-    // Column() {
-    // Header()
-    // Main()
-    // Footer()
-    // }
-    GoodListView()
+    Column() {
+      // Header()
+      // Main()
+      // Footer()
+      GoodListView()
+    }
   }
 }
 
@@ -96,28 +97,28 @@ class GoodItem {
 struct GoodListView {
   @State listItem: Array<GoodItem> = [{
     "id": 1,
-    "goods_name": "班俏BANQIAO超火ins潮卫衣女士2020秋季新款韩版宽松慵懒风薄款外套带帽上衣",
+    "goods_name": "Build的使用",
     "goods_img": "assets/1.webp",
     "goods_price": 108,
     "goods_count": 1,
   },
     {
       "id": 2,
-      "goods_name": "嘉叶希连帽卫衣女春秋薄款2020新款宽松bf韩版字母印花中长款外套ins潮",
+      "goods_name": "登陆的使用",
       "goods_img": "assets/2.webp",
       "goods_price": 129,
       "goods_count": 1,
     },
     {
       "id": 3,
-      "goods_name": "思蜜怡2020休闲运动套装女春秋季新款时尚大码宽松长袖卫衣两件套",
+      "goods_name": "Toggle和控件隐藏显示的使用",
       "goods_img": "assets/3.webp",
       "goods_price": 198,
       "goods_count": 1,
     },
     {
       "id": 4,
-      "goods_name": "思蜜怡卫衣女加绒加厚2020秋冬装新款韩版宽松上衣连帽中长款外套",
+      "goods_name": "BuildCaseParamCase实例",
       "goods_img": "assets/4.webp",
       "goods_price": 99,
       "goods_count": 1,
@@ -167,7 +168,7 @@ struct GoodListView {
 
   build() {
     List({ space: 20 }) {
-      ForEach(this.listItem, (good: GoodItem) => {
+      ForEach(this.listItem, (good: GoodItem, index: number) => {
         ListItem() {
           Row() {
             Image(good.goods_img)
@@ -190,7 +191,16 @@ struct GoodListView {
           }
         }.onClick(() => {
           // AlertDialog.show({ message: good.goods_name })
-          promptAction.showToast({ message: good.goods_name })
+          // promptAction.showToast({ message: good.goods_name })
+          if (index == 0) {
+            router.pushUrl({ url: "pages/demo03/BuildCase" })
+          } else if (index == 1) {
+            router.pushUrl({ url: "pages/demo02/LoginCase" })
+          } else if (index == 2) {
+            router.pushUrl({ url: "pages/demo01/ToggleCase" })
+          } else if (index == 3) {
+            router.pushUrl({ url: "pages/demo03/BuilderParamCase" })
+          }
         })
       })
     }.padding(15)

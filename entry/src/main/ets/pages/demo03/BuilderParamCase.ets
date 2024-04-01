@@ -7,7 +7,7 @@ struct BuilderParamCase {
   }
 
   @Builder
-  renderImage(){
+  renderImage() {
   }
 
   build() {
@@ -24,8 +24,7 @@ struct BuilderParamCase {
 @Component
 struct hmComponent {
   @BuilderParam
-  addComment: () => void = () => {
-  }
+  addComment: () => void
 
   build() {
     Column() {

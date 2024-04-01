@@ -6,6 +6,10 @@
     "pages/demo03/BuildCase",
     "pages/demo02/LoginCase",
     "pages/demo01/ToggleCase",
-    "pages/demo03/BuilderParamCase"
+    "pages/demo03/BuilderParamCase",
+    "pages/demo03/BuilderParamCard",
+    "pages/demo04/PropCase",
+    "pages/demo04/LinkCase",
+    "pages/demo04/ProvideCase"
   ]
 }

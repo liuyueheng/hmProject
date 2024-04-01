@@ -95,7 +95,7 @@ class GoodItem {
  */
 @Component
 struct GoodListView {
-  @State listItem: Array<GoodItem> = [{
+  @State listItem: GoodItem[] = [{
     "id": 1,
     "goods_name": "Build的使用",
     "goods_img": "assets/1.webp",
@@ -125,28 +125,28 @@ struct GoodListView {
     },
     {
       "id": 5,
-      "goods_name": "幂凝早秋季卫衣女春秋装韩版宽松中长款假两件上衣薄款ins盐系外套潮",
+      "goods_name": "BuilderParamCard使用",
       "goods_img": "assets/5.webp",
       "goods_price": 156,
       "goods_count": 1,
     },
     {
       "id": 6,
-      "goods_name": "ME&CITY女装冬季新款针织抽绳休闲连帽卫衣女",
+      "goods_name": "PropCase使用",
       "goods_img": "assets/6.webp",
       "goods_price": 142.8,
       "goods_count": 1,
     },
     {
       "id": 7,
-      "goods_name": "幂凝假两件女士卫衣秋冬女装2020年新款韩版宽松春秋季薄款ins潮外套",
+      "goods_name": "LinkCase使用",
       "goods_img": "assets/7.webp",
       "goods_price": 219,
       "goods_count": 2,
     },
     {
       "id": 8,
-      "goods_name": "依魅人2020休闲运动衣套装女秋季新款秋季韩版宽松卫衣 时尚两件套",
+      "goods_name": "ProvideCase使用",
       "goods_img": "assets/8.webp",
       "goods_price": 178,
       "goods_count": 1,
@@ -167,42 +167,56 @@ struct GoodListView {
     }]
 
   build() {
-    List({ space: 20 }) {
-      ForEach(this.listItem, (good: GoodItem, index: number) => {
-        ListItem() {
-          Row() {
-            Image(good.goods_img)
-              .width(100)
-              .height(160)
-              .borderRadius(8)
-            Column() {
-              Text(good.goods_name).fontSize(16).lineHeight(20).lineHeight(20)
-              // Text(`￥${good.goods_price.toString()}`).fontSize(20).fontColor(Color.Red)
-              Text() {
-                Span('￥').fontSize(14).fontColor(Color.Red).fontWeight(FontWeight.Bold)
-                Span(good.goods_price.toString()).fontSize(20).fontColor(Color.Red).fontWeight(FontWeight.Bold)
+    Column() {
+      Grid() {
+        ForEach(this.listItem, (good: GoodItem, index: number) => {
+          GridItem() {
+            Row() {
+              Image(good.goods_img)
+                .width(50)
+                .height(80)
+                .borderRadius(8)
+              Column() {
+                Text(good.goods_name).fontSize(16).lineHeight(20).lineHeight(20)
+                // Text(`￥${good.goods_price.toString()}`).fontSize(20).fontColor(Color.Red)
+                Text() {
+                  Span('￥').fontSize(14).fontColor(Color.Red).fontWeight(FontWeight.Bold)
+                  Span(good.goods_price.toString()).fontSize(20).fontColor(Color.Red).fontWeight(FontWeight.Bold)
+                }
               }
+              .layoutWeight(1)
+              .height(80)
+              .justifyContent(FlexAlign.SpaceBetween)
+              .alignItems(HorizontalAlign.Start)
+              .margin({ left: 10 })
             }
-            .layoutWeight(1)
-            .height(160)
-            .justifyContent(FlexAlign.SpaceBetween)
-            .alignItems(HorizontalAlign.Start)
-            .margin({ left: 10 })
-          }
-        }.onClick(() => {
-          // AlertDialog.show({ message: good.goods_name })
-          // promptAction.showToast({ message: good.goods_name })
-          if (index == 0) {
-            router.pushUrl({ url: "pages/demo03/BuildCase" })
-          } else if (index == 1) {
-            router.pushUrl({ url: "pages/demo02/LoginCase" })
-          } else if (index == 2) {
-            router.pushUrl({ url: "pages/demo01/ToggleCase" })
-          } else if (index == 3) {
-            router.pushUrl({ url: "pages/demo03/BuilderParamCase" })
-          }
+          }.onClick(() => {
+            // AlertDialog.show({ message: good.goods_name })
+            // promptAction.showToast({ message: good.goods_name })
+            if (index == 0) {
+              router.pushUrl({ url: "pages/demo03/BuildCase" })
+            } else if (index == 1) {
+              router.pushUrl({ url: "pages/demo02/LoginCase" })
+            } else if (index == 2) {
+              router.pushUrl({ url: "pages/demo01/ToggleCase" })
+            } else if (index == 3) {
+              router.pushUrl({ url: "pages/demo03/BuilderParamCase" })
+            } else if (index == 4) {
+              router.pushUrl({ url: "pages/demo03/BuilderParamCard" })
+            } else if (index == 5) {
+              router.pushUrl({ url: "pages/demo04/PropCase" })
+            } else if (index == 6) {
+              router.pushUrl({ url: "pages/demo04/LinkCase" })
+            } else if (index == 7) {
+              router.pushUrl({ url: "pages/demo04/ProvideCase" })
+            }
+          })
         })
-      })
-    }.padding(15)
+      }
+      .columnsTemplate('1fr 1fr')
+      .columnsGap(10)
+      .rowsGap(15)
+      .cachedCount(3)
+    }.padding(20)
   }
 }

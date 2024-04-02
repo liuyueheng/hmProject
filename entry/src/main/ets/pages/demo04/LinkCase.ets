@@ -1,5 +1,9 @@
 /**
  * Link修饰符使用
+ * * 父子双向:父组件变化 子组件变化
+ * 子组件变化 父组件也变化变化
+ * 使用Link装饰器
+ * this.num改成$num
  */
 @Entry
 @Component

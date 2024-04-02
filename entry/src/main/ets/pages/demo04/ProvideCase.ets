@@ -1,8 +1,15 @@
+import promptAction from '@ohos.promptAction'
+
 @Entry
 @Component
 struct ProvideCase {
   @Provide('aa')
+  // @Watch("updateData")
   money: number = 1000
+
+  // updateData() {
+  //   promptAction.showToast({ message: `谁动了我的钱包 ${this.money.toString()}` })
+  // }
 
   build() {
     Column() {
@@ -18,7 +25,12 @@ struct ProvideCase {
 @Component
 struct FatherView {
   @Consume('aa')
+  @Watch("updateData")
   money: number
+
+  updateData() {
+    promptAction.showToast({ message: `谁动了我的钱包 ${this.money.toString()}` })
+  }
 
   build() {
     Column() {

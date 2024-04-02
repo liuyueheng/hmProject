@@ -153,14 +153,32 @@ struct GoodListView {
     },
     {
       "id": 9,
-      "goods_name": "芷臻(zhizhen)加厚卫衣2020春秋季女长袖韩版宽松短款加绒春秋装连帽开衫外套冬",
+      "goods_name": "WatchCase的使用",
       "goods_img": "assets/9.webp",
       "goods_price": 128,
       "goods_count": 1,
     },
     {
       "id": 10,
-      "goods_name": "Semir森马卫衣女冬装2019新款可爱甜美大撞色小清新连帽薄绒女士套头衫",
+      "goods_name": "ObservedLinkCase的使用",
+      "goods_img": "assets/10.webp",
+      "goods_price": 153,
+      "goods_count": 1,
+    }, {
+      "id": 10,
+      "goods_name": "知乎Observed更新数据Case的使用",
+      "goods_img": "assets/10.webp",
+      "goods_price": 153,
+      "goods_count": 1,
+    }, {
+      "id": 10,
+      "goods_name": "多层数据机构通过new一个对象进行更改数据",
+      "goods_img": "assets/10.webp",
+      "goods_price": 153,
+      "goods_count": 1,
+    }, {
+      "id": 10,
+      "goods_name": "LocalStorage双向绑定的使用",
       "goods_img": "assets/10.webp",
       "goods_price": 153,
       "goods_count": 1,
@@ -209,6 +227,16 @@ struct GoodListView {
               router.pushUrl({ url: "pages/demo04/LinkCase" })
             } else if (index == 7) {
               router.pushUrl({ url: "pages/demo04/ProvideCase" })
+            } else if (index == 8) {
+              router.pushUrl({ url: "pages/demo05/WatchCase" })
+            } else if (index == 9) {
+              router.pushUrl({ url: "pages/demo05/ObservedLinkCase" })
+            } else if (index == 10) {
+              router.pushUrl({ url: "pages/demo05/ObservedLinkZhiHu" })
+            } else if (index == 11) {
+              router.pushUrl({ url: "pages/demo05/MulitiStateCase" })
+            } else if (index == 12) {
+              router.pushUrl({ url: "pages/demo05/LocalStorageCase" })
             }
           })
         })

@@ -10,6 +10,12 @@
     "pages/demo03/BuilderParamCard",
     "pages/demo04/PropCase",
     "pages/demo04/LinkCase",
-    "pages/demo04/ProvideCase"
+    "pages/demo04/ProvideCase",
+    "pages/demo05/WatchCase",
+    "pages/demo05/ObservedLinkCase",
+    "pages/demo05/ObservedLinkZhiHu",
+    "pages/demo05/MulitiStateCase",
+    "pages/demo05/LocalStorageCase",
+    "pages/demo05/LocalStorageCase2"
   ]
 }

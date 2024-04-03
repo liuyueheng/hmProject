@@ -16,6 +16,10 @@
     "pages/demo05/ObservedLinkZhiHu",
     "pages/demo05/MulitiStateCase",
     "pages/demo05/LocalStorageCase",
-    "pages/demo05/LocalStorageCase2"
+    "pages/demo05/LocalStorageCase2",
+    "pages/demo06/AppStorageCase",
+    "pages/demo06/AppStorageCase2",
+    "pages/demo06/HttpCase",
+    "pages/demo06/MeiTuanCase"
   ]
 }

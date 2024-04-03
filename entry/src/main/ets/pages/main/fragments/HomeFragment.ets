@@ -182,6 +182,24 @@ struct GoodListView {
       "goods_img": "assets/10.webp",
       "goods_price": 153,
       "goods_count": 1,
+    }, {
+      "id": 10,
+      "goods_name": "APPStorage的使用",
+      "goods_img": "assets/10.webp",
+      "goods_price": 153,
+      "goods_count": 1,
+    }, {
+      "id": 10,
+      "goods_name": "HTTP的使用",
+      "goods_img": "assets/10.webp",
+      "goods_price": 153,
+      "goods_count": 1,
+    }, {
+      "id": 10,
+      "goods_name": "美团外卖案例",
+      "goods_img": "assets/10.webp",
+      "goods_price": 153,
+      "goods_count": 1,
     }]
 
   build() {
@@ -237,6 +255,12 @@ struct GoodListView {
               router.pushUrl({ url: "pages/demo05/MulitiStateCase" })
             } else if (index == 12) {
               router.pushUrl({ url: "pages/demo05/LocalStorageCase" })
+            } else if (index == 13) {
+              router.pushUrl({ url: "pages/demo06/AppStorageCase" })
+            } else if (index == 14) {
+              router.pushUrl({ url: "pages/demo06/HttpCase" })
+            } else if (index == 15) {
+              router.pushUrl({ url: "pages/demo06/MeiTuanCase" })
             }
           })
         })

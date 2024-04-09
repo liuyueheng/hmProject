@@ -1,5 +1,7 @@
 import promptAction from '@ohos.promptAction'
 import router from '@ohos.router'
+import Want from '@ohos.app.ability.Want'
+import common from '@ohos.app.ability.common'
 
 @Entry
 @Component
@@ -200,6 +202,12 @@ struct GoodListView {
       "goods_img": "assets/10.webp",
       "goods_price": 153,
       "goods_count": 1,
+    }, {
+      "id": 10,
+      "goods_name": "ability多任务",
+      "goods_img": "assets/10.webp",
+      "goods_price": 153,
+      "goods_count": 1,
     }]
 
   build() {
@@ -226,7 +234,7 @@ struct GoodListView {
               .alignItems(HorizontalAlign.Start)
               .margin({ left: 10 })
             }
-          }.onClick(() => {
+          }.onClick(async () => {
             // AlertDialog.show({ message: good.goods_name })
             // promptAction.showToast({ message: good.goods_name })
             if (index == 0) {
@@ -261,6 +269,16 @@ struct GoodListView {
               router.pushUrl({ url: "pages/demo06/HttpCase" })
             } else if (index == 15) {
               router.pushUrl({ url: "pages/demo06/MeiTuanCase" })
+            } else if (index == 16) {
+              //拉起新的ability
+              try {
+                let want: Want = {
+                  'bundleName': 'com.betawm.baw', //应用包名
+                  'abilityName': 'PayAbility', //要跳转的abilityName
+                };
+                await (getContext(this) as common.UIAbilityContext).startAbility(want)
+              } catch (error) {
+              }
             }
           })
         })

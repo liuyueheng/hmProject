@@ -38,6 +38,26 @@
             ]
           }
         ]
+      },
+      {
+        "name": "PayAbility",
+        "srcEntry": "./ets/payability/PayAbility.ts",
+        "description": "$string:EntryAbility_desc",
+        "icon": "$media:ic_app_launcher",
+        "label": "$string:EntryAbility_label",
+        "startWindowIcon": "$media:ic_app_launcher",
+        "startWindowBackground": "$color:start_window_background",
+        "exported": true,
+        "skills": [
+          {
+            "entities": [
+              "entity.system.home"
+            ],
+            "actions": [
+              "action.system.home"
+            ]
+          }
+        ]
       }
     ]
   }

@@ -21,6 +21,8 @@
     "pages/demo06/AppStorageCase2",
     "pages/demo06/HttpCase",
     "pages/demo06/MeiTuanCase",
-    "pages/demo07/PayIndex"
+    "pages/demo07/PayIndex",
+    "pages/demo07/VideoCase",
+    "pages/demo07/DouYinCase"
   ]
 }

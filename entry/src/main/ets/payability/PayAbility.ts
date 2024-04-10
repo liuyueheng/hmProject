@@ -1,10 +1,17 @@
 import UIAbility from '@ohos.app.ability.UIAbility';
 import hilog from '@ohos.hilog';
 import window from '@ohos.window';
+import Want from '@ohos.app.ability.Want';
+
+type AbilityParams = Record<string, number>
 
 export default class PayAbility extends UIAbility {
-  onCreate(want, launchParam) {
-    hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onCreate');
+  onCreate(want: Want, launchParam) {
+
+    const params = want.parameters as AbilityParams
+    AppStorage.SetOrCreate<number>("order_id", params.order_id)
+
+    hilog.info(0x0000, 'testTag', '%{public}s', params);
   }
 
   onDestroy() {

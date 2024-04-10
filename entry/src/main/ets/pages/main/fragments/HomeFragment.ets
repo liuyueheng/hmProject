@@ -169,43 +169,55 @@ struct GoodListView {
     }, {
       "id": 10,
       "goods_name": "知乎Observed更新数据Case的使用",
-      "goods_img": "assets/10.webp",
+      "goods_img": "assets/6.webp",
       "goods_price": 153,
       "goods_count": 1,
     }, {
       "id": 10,
       "goods_name": "多层数据机构通过new一个对象进行更改数据",
-      "goods_img": "assets/10.webp",
+      "goods_img": "assets/4.webp",
       "goods_price": 153,
       "goods_count": 1,
     }, {
       "id": 10,
       "goods_name": "LocalStorage双向绑定的使用",
-      "goods_img": "assets/10.webp",
+      "goods_img": "assets/3.webp",
       "goods_price": 153,
       "goods_count": 1,
     }, {
       "id": 10,
       "goods_name": "APPStorage的使用",
-      "goods_img": "assets/10.webp",
+      "goods_img": "assets/2.webp",
       "goods_price": 153,
       "goods_count": 1,
     }, {
       "id": 10,
       "goods_name": "HTTP的使用",
-      "goods_img": "assets/10.webp",
+      "goods_img": "assets/5.webp",
       "goods_price": 153,
       "goods_count": 1,
     }, {
       "id": 10,
       "goods_name": "美团外卖案例",
-      "goods_img": "assets/10.webp",
+      "goods_img": "assets/1.webp",
       "goods_price": 153,
       "goods_count": 1,
     }, {
       "id": 10,
       "goods_name": "ability多任务",
-      "goods_img": "assets/10.webp",
+      "goods_img": "assets/6.webp",
+      "goods_price": 153,
+      "goods_count": 1,
+    }, {
+      "id": 10,
+      "goods_name": "视频播放器的使用",
+      "goods_img": "assets/7.webp",
+      "goods_price": 153,
+      "goods_count": 1,
+    }, {
+      "id": 10,
+      "goods_name": "抖音小案例",
+      "goods_img": "assets/3.webp",
       "goods_price": 153,
       "goods_count": 1,
     }]
@@ -270,15 +282,34 @@ struct GoodListView {
             } else if (index == 15) {
               router.pushUrl({ url: "pages/demo06/MeiTuanCase" })
             } else if (index == 16) {
+              //定义返回参数的类型
+              type ResultParams = Record<string, boolean>
+
               //拉起新的ability
               try {
                 let want: Want = {
-                  'bundleName': 'com.betawm.baw', //应用包名
-                  'abilityName': 'PayAbility', //要跳转的abilityName
+                  bundleName: 'com.betawm.baw', //应用包名
+                  abilityName: 'PayAbility', //要跳转的abilityName
+                  //传值到下一个ability
+                  parameters: {
+                    order_id: Date.now()
+                  }
                 };
-                await (getContext(this) as common.UIAbilityContext).startAbility(want)
+                const result = await (getContext(this) as common.UIAbilityContext).startAbilityForResult(want)
+
+                const params = result.want?.parameters as ResultParams
+
+                if (params.paySuccess) {
+                  promptAction.showToast({ message: '支付成功' + params.payOrderId })
+                } else {
+                  promptAction.showToast({ message: '支付失败' + params.payOrderId })
+                }
               } catch (error) {
               }
+            } else if (index == 17) {
+              router.pushUrl({ url: "pages/demo07/VideoCase" })
+            } else if (index == 18) {
+              router.pushUrl({ url: "pages/demo07/DouYinCase" })
             }
           })
         })

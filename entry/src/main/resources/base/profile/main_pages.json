@@ -23,6 +23,8 @@
     "pages/demo06/MeiTuanCase",
     "pages/demo07/PayIndex",
     "pages/demo07/VideoCase",
-    "pages/demo07/DouYinCase"
+    "pages/demo07/DouYinCase",
+    "pages/demo07/CanvasCase",
+    "pages/demo07/GuessCanvas"
   ]
 }

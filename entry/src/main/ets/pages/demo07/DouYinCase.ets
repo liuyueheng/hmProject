@@ -1,3 +1,6 @@
+/**
+ * 抖音小案例
+ */
 @Entry
 @Component
 struct DouYin {

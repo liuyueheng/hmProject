@@ -232,6 +232,18 @@ struct GoodListView {
       "goods_img": "assets/2.webp",
       "goods_price": 153,
       "goods_count": 1,
+    }, {
+      "id": 10,
+      "goods_name": "微信聊天机器人",
+      "goods_img": "assets/2.webp",
+      "goods_price": 153,
+      "goods_count": 1,
+    }, {
+      "id": 10,
+      "goods_name": "闹钟demo",
+      "goods_img": "assets/2.webp",
+      "goods_price": 153,
+      "goods_count": 1,
     }]
 
   build() {
@@ -326,6 +338,10 @@ struct GoodListView {
               router.pushUrl({ url: "pages/demo07/CanvasCase" })
             } else if (index == 20) {
               router.pushUrl({ url: "pages/demo07/GuessCanvas" })
+            } else if (index == 21) {
+              router.pushUrl({ url: "pages/demo08/WechatCase" })
+            } else if (index == 22) {
+              router.pushUrl({ url: "pages/demo08/ClockCase" })
             }
           })
         })

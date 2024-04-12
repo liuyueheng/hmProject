@@ -25,6 +25,8 @@
     "pages/demo07/VideoCase",
     "pages/demo07/DouYinCase",
     "pages/demo07/CanvasCase",
-    "pages/demo07/GuessCanvas"
+    "pages/demo07/GuessCanvas",
+    "pages/demo08/WechatCase",
+    "pages/demo08/ClockCase"
   ]
 }

@@ -205,6 +205,7 @@ struct CarMain {
               })
           })
         }.backgroundColor("#f5f5f5").height('100%').width('90')
+
         //右侧内容
         List() {
           ForEach(this.categoryList[this.indexSelect]?.foods || [], (item: FoodItem) => {
@@ -309,7 +310,7 @@ struct MTFoodItem {
           .padding({ top: 2, bottom: 2, right: 5, left: 5 })
           .borderRadius(2)
         Text() {
-          Span(`月销售${this.foodItem.month_saled.toString()}`)
+          Span(`月销售${this.foodItem.month_saled}`)
           Span(' ')
           Span(this.foodItem.like_ratio_desc)
         }
@@ -321,10 +322,11 @@ struct MTFoodItem {
             Span('¥ ')
               .fontColor('#ff8000')
               .fontSize(10)
-            Span(this.foodItem.price.toFixed(2))
+            Span(this.foodItem.price?.toFixed(2))
               .fontColor('#ff8000')
               .fontWeight(FontWeight.Bold)
           }
+
           //购物车加减视图
           MTAddCut({
             item: this.foodItem
@@ -423,10 +425,11 @@ struct MTCartItem {
             Span('¥ ')
               .fontColor('#ff8000')
               .fontSize(10)
-            Span(this.item.price.toFixed(2))
+            Span(this.item.price?.toFixed(2))
               .fontColor('#ff8000')
               .fontWeight(FontWeight.Bold)
           }
+
           //购物车加减视图
           MTAddCut({ item: this.item })
         }

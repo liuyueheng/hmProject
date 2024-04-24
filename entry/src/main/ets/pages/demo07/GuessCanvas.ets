@@ -24,8 +24,10 @@ struct GuessCanvas {
           this.timer = -1
           return
         }
-        let p: PointClass = this.pointList.shift()
-        this.guessLine(p)
+        let p: PointClass | undefined = this.pointList.shift();
+        if (p !== undefined) {
+          this.guessLine(p);
+        }
       }, 100)
     }
   }

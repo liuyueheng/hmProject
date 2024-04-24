@@ -43,13 +43,17 @@ export struct LocalStorageCase {
     Column({ space: 15 }) {
       Text("姓名" + this.mUser.name)
       Text("年龄" + this.mUser.age)
-      Text("地址" + this.mUser.address.name)
-      Text("国家" + this.mUser.address.remove.name)
+      Text("地址" + this.mUser.address?.name)
+      Text("国家" + this.mUser.address?.remove.name)
       Button("修改数据").onClick(() => {
         this.mUser2.name = "张三"
-        this.mUser2.address.name = "深圳"
+        if (this.mUser2.address) {
+          this.mUser2.address.name = "深圳"
+        }
         this.mUser2.age = "111" + Math.random().toFixed(2)
-        this.mUser2.address.remove.name = "美国"
+        if (this.mUser2.address && this.mUser2.address.remove) {
+          this.mUser2.address.remove.name = "美国"
+        }
       })
       Button("跳转").onClick(() => {
         router.pushUrl({ url: "pages/demo05/LocalStorageCase2" })
@@ -58,17 +62,17 @@ export struct LocalStorageCase {
   }
 }
 
-export class UserInfo {
+export interface UserInfo {
   name: string
   age: string
   address: AddModel
 }
 
-export class AddModel {
+export interface AddModel {
   name: string
   remove: RemoveModel
 }
 
-export class RemoveModel {
+export interface RemoveModel {
   name: string
 }

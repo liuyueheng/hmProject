@@ -74,11 +74,11 @@ export default struct ObservedLinkZhiHu {
       item.likeFlag = true
     }
     let index = this.commentList.findIndex(obj => obj.id === item.id)
-    this.commentList.splice(index, 1, item)
+    this.commentList.splice(index, 1, item as ReplyItemClassModel)
   }
 
   addComment(item: ReplyItemClass) {
-    this.commentList.unshift(item)
+    this.commentList.unshift(item as ReplyItemClassModel)
   }
 
   build() {
@@ -87,7 +87,7 @@ export default struct ObservedLinkZhiHu {
         Column() {
           HmNavObservedBar()
           HmCommentObservedItem({
-            item: {
+            item: new ReplyItemClassModel({
               id: 1,
               avatar: $r('app.media.ic_app_launcher'),
               author: '周杰伦',
@@ -96,7 +96,7 @@ export default struct ObservedLinkZhiHu {
               area: '海南',
               likeNum: 100,
               likeFlag: false
-            }
+            })
           })
           Divider().strokeWidth(6).color("#f4f4f4")
           Row() {
@@ -104,12 +104,13 @@ export default struct ObservedLinkZhiHu {
           }.height(40).padding({ left: 20 })
 
           ForEach(this.commentList, (item: ReplyItemClass) => {
-            HmCommentObservedItem({ item })
+            HmCommentObservedItem({ item: item })
           })
         }
       }.padding({
         bottom: 100
       })
+
       //回复组件
       ReplayObservedInput({
         addComment: item => {
@@ -145,7 +146,7 @@ struct ReplayObservedInput {
             avatar: $r('app.media.icon'),
             area: "北京"
           }
-          this.addComment(obj)
+          this.addComment(obj as ReplyItemClassModel)
           this.commentStr = ""
         }
       })

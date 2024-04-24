@@ -4,7 +4,7 @@ import promptAction from '@ohos.promptAction'
 @Entry
 @Component
 struct ClockCase {
-  reminderId = null
+  reminderId = 0
 
   build() {
     Column({ space: 15 }) {

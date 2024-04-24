@@ -18,7 +18,7 @@ export default struct MeFragment {
   build() {
     Scroll(this.scroller) {
       Column() {
-        ForEach(this.arr, (item) => {
+        ForEach(this.arr, (item: []) => {
           Text(item.toString())
             .width('90%')
             .height(150)
@@ -27,7 +27,7 @@ export default struct MeFragment {
             .fontSize(16)
             .textAlign(TextAlign.Center)
             .margin({ top: 10 })
-        }, item => item)
+        })
       }.width('100%')
     }
     .backgroundColor(0xDCDCDC)

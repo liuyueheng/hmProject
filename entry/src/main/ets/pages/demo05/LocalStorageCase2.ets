@@ -10,8 +10,8 @@ struct LocalStorageCase2 {
     Column({ space: 20 }) {
       Text("姓名" + this.mUser.name)
       Text("年龄" + this.mUser.age)
-      Text("地址" + this.mUser.address.name)
-      Text("国家" + this.mUser.address.remove.name)
+      Text("地址" + this.mUser.address?.name)
+      Text("国家" + this.mUser.address?.remove.name)
     }
   }
 }

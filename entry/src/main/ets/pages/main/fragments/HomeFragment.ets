@@ -85,11 +85,11 @@ struct Footer {
 }
 
 class GoodItem {
-  id: number
-  goods_name: string
-  goods_img: string
-  goods_price: number
-  goods_count: number
+  id: number = 0
+  goods_name: string = ''
+  goods_img: string = ''
+  goods_price: number = 0
+  goods_count: number = 0
 }
 
 /**

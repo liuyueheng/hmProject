@@ -36,8 +36,7 @@ struct BuilderParamCard {
 @Component
 struct HmCard2 {
   @BuilderParam
-  cardFn: () => void = () => {
-  }
+  cardFn: () => void
 
   build() {
     Column() {

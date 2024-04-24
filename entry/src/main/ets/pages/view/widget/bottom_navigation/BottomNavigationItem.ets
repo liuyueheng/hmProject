@@ -3,7 +3,20 @@ import { BottomNavigationEntity } from '../../../../bean/BottomNavigationEntity'
 @Preview
 @Component
 export default struct BottomNavigationItem {
-  private navigationItem: BottomNavigationEntity;
+  private navigationItem: BottomNavigationEntity = new BottomNavigationEntity({
+    tag: 0,
+    title: $r(
+      'app.string.table_home'
+    ),
+    image: $r
+    (
+      "app.media.widget_bar_home_over"
+    ),
+    unCheckImage: $r
+    (
+      "app.media.widget_bar_home_nor"
+    )
+  });
   @Link currentIndex: number;
 
   build() {

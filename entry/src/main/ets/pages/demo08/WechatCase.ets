@@ -38,14 +38,14 @@ struct WechatCase {
   async sendMessage() {
     if (!this.contentStr) return
     this.sendIng = true
-    let selfMessage: MessageItem = {
+    let selfMessage: MessageItem = new MessageItem({
       id: util.generateRandomUUID(),
       timestamp: Date.now(),
       content: this.contentStr,
       avatar: $r('app.media.ic_app_launcher'),
       username: '老高',
       self: true
-    }
+    })
     this.messageList.push(selfMessage)
     this.scroller.scrollToIndex(this.messageList.length - 1)
     const url = `http://api.qingyunke.com/api.php?key=free&appid=0&msg=${encodeURI(this.contentStr)}`
@@ -70,7 +70,7 @@ struct WechatCase {
       const request: notificationManager.NotificationRequest = {
         id: Date.now(),
         content: {
-          contentType: notificationManager.ContentType.NOTIFICATION_CONTENT_BASIC_TEXT,
+          notificationContentType: notificationManager.ContentType.NOTIFICATION_CONTENT_BASIC_TEXT,
           normal: {
             title: "你老婆给你来信了",
             text: result.content,
@@ -82,14 +82,14 @@ struct WechatCase {
       }
       notificationManager.publish(request)
       // 回复成功
-      let message: MessageItem = {
+      let message: MessageItem = new MessageItem({
         id: util.generateRandomUUID(),
         timestamp: Date.now(),
         content: result.content,
         avatar: $r("app.media.icon_cart"),
         username: '老婆大人',
         self: false
-      }
+      })
       this.messageList.push(message)
       this.scroller.scrollToIndex(this.messageList.length - 1)
 
@@ -204,14 +204,26 @@ struct WechatCase {
     .backgroundColor('#ededed')
     .height('100%')
     .onAreaChange((oldValue: Area, newValue: Area) => {
-      this.topY = Math.abs(parseFloat(newValue.globalPosition.y.toString()))
+      if (newValue.globalPosition && newValue.globalPosition.y !== undefined) {
+        this.topY = Math.abs(parseFloat(newValue.globalPosition.y.toString()));
+      } else {
+        // 在这里处理 globalPosition.y 未定义的情况
+      }
     })
   }
 }
 
 @Component
 struct MessageCom {
-  item: Partial<MessageItem> = {}
+  // item: Partial<MessageItem> = {}  //不能这么写
+  item: MessageItem = new MessageItem({
+    content: '',
+    avatar: '',
+    username: '',
+    self: false,
+    timestamp: 0,
+    id: '',
+  })
   @State
   showMenu: boolean = false
   //用方法传参的形式给父控件
